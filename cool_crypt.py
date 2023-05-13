@@ -4,9 +4,20 @@ import glob
 import getpass
 import pyperclip
 
+from cryptography.fernet import InvalidToken
+
 from crypttools.key_generator import derive_key
 from crypttools.crypt_manager import encrypt
 from crypttools.crypt_manager import decrypt
+
+def remove_file(filepath, ignore_errors=False):
+    if(ignore_errors):
+        try:
+            os.remove(filepath)
+        except OSError:
+            pass
+    else:
+        os.remove(filepath)
 
 if(len(sys.argv) > 1):
     arg_1 = sys.argv[1]
@@ -39,7 +50,15 @@ if mode_string == "encrypt":
     copy_password_to_clipboard = input("Would you like to copy the password to your clipboard? (Y/N) ")
 
     if copy_password_to_clipboard == "Y" or copy_password_to_clipboard == "y":
-        pyperclip.copy(password)
+        try:
+            pyperclip.copy(password)
+        except Exception as e:
+            print("An error occured while trying to copy the password to the clipboard: {}".format(e))
+            continue_without_copying = input("Would you still like to continue with the encryption? (Y/N): ")
+
+            if(continue_without_copying != "Y" and continue_without_copying != "y"):
+                print("Alright! Shutting down execution...")
+                sys.exit()
 
 passphrase = password.encode()
 
@@ -67,7 +86,12 @@ for filepath in glob.iglob("%s/**/*" % directory, recursive=True):
                 print("Will decrypt: %s" % filepath)
                 try:
                     decrypt(key, filepath, filepath[0:-6])
-                    os.remove(filepath)
+                    remove_file(filepath, ignore_errors=False)
+                except InvalidToken:
+                    remove_file(filepath[0:-6], ignore_errors=True)
+                    print("Can't decrypt the files! Please check if the password is right.")
+                    break;
                 except Exception as e:
+                    remove_file(filepath[0:-6], ignore_errors=True)
                     print("An error occured while decrypting file %s Error: %s" % (filepath, str(e)))
                     break
