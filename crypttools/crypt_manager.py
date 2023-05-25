@@ -2,7 +2,9 @@ import struct
 
 from cryptography.fernet import Fernet
 
-def encrypt(key, fin, fout, *, block = 1 << 16):
+ONE_MEGABYTE = 1 << 20
+
+def encrypt(key, fin, fout, *, block = ONE_MEGABYTE):
     fernet = Fernet(key)
     with open(fin, 'rb') as fi, open(fout, 'wb') as fo:
         while True:
