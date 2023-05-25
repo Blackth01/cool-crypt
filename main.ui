@@ -118,39 +118,80 @@
      <property name="verticalSpacing">
       <number>0</number>
      </property>
-     <item row="6" column="0" colspan="2" alignment="Qt::AlignHCenter">
-      <widget class="QPushButton" name="actionButton">
-       <property name="enabled">
-        <bool>true</bool>
-       </property>
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>275</width>
-         <height>75</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>275</width>
-         <height>16777215</height>
-        </size>
-       </property>
+     <item row="0" column="0">
+      <widget class="QLabel" name="labelPassword">
        <property name="font">
         <font>
-         <pointsize>14</pointsize>
-         <weight>75</weight>
-         <bold>true</bold>
+         <pointsize>16</pointsize>
         </font>
        </property>
        <property name="text">
-        <string>Decrypt</string>
+        <string>Password</string>
        </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="passwordInput">
+       <property name="echoMode">
+        <enum>QLineEdit::Password</enum>
+       </property>
+       <property name="placeholderText">
+        <string>Insert your password here</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QLineEdit" name="confirmPasswordInput">
+       <property name="echoMode">
+        <enum>QLineEdit::Password</enum>
+       </property>
+       <property name="placeholderText">
+        <string>Confirm your password</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="labelConfirmPassword">
+       <property name="font">
+        <font>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Confirm password</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="labelAction">
+       <property name="font">
+        <font>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Action</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QComboBox" name="actionMode">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>30</height>
+        </size>
+       </property>
+       <item>
+        <property name="text">
+         <string>Decrypt</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Encrypt</string>
+        </property>
+       </item>
       </widget>
      </item>
      <item row="5" column="0" colspan="2">
@@ -190,16 +231,6 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="1">
-      <widget class="QLineEdit" name="passwordInput">
-       <property name="echoMode">
-        <enum>QLineEdit::Password</enum>
-       </property>
-       <property name="placeholderText">
-        <string>Insert your password here</string>
-       </property>
-      </widget>
-     </item>
      <item row="4" column="0" colspan="2" alignment="Qt::AlignHCenter">
       <widget class="QPushButton" name="selectDirectory">
        <property name="minimumSize">
@@ -226,26 +257,6 @@
        </property>
       </widget>
      </item>
-     <item row="3" column="1">
-      <widget class="QComboBox" name="actionMode">
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>30</height>
-        </size>
-       </property>
-       <item>
-        <property name="text">
-         <string>Decrypt</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Encrypt</string>
-        </property>
-       </item>
-      </widget>
-     </item>
      <item row="0" column="0">
       <widget class="QLabel" name="labelPassword">
        <property name="font">
@@ -255,18 +266,6 @@
        </property>
        <property name="text">
         <string>Password</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="0">
-      <widget class="QLabel" name="labelAction">
-       <property name="font">
-        <font>
-         <pointsize>14</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>Action</string>
        </property>
       </widget>
      </item>
@@ -289,25 +288,38 @@
        </property>
       </widget>
      </item>
-     <item row="2" column="0">
-      <widget class="QLabel" name="labelConfirmPassword">
+     <item row="6" column="0" colspan="2" alignment="Qt::AlignHCenter">
+      <widget class="QPushButton" name="actionButton">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>275</width>
+         <height>75</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>275</width>
+         <height>16777215</height>
+        </size>
+       </property>
        <property name="font">
         <font>
          <pointsize>14</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
         </font>
        </property>
        <property name="text">
-        <string>Confirm password</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="1">
-      <widget class="QLineEdit" name="confirmPasswordInput">
-       <property name="echoMode">
-        <enum>QLineEdit::Password</enum>
-       </property>
-       <property name="placeholderText">
-        <string>Confirm your password</string>
+        <string>Decrypt</string>
        </property>
       </widget>
      </item>
